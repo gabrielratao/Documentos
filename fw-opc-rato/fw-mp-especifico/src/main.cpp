@@ -11,7 +11,8 @@
 #define SPI_OPC_busy 0x31
 #define SPI_OPC_ready 0xF3
 
-int a = 0;
+int a = 55;
+int b = 43;
 
 
 unsigned long currentTime;
