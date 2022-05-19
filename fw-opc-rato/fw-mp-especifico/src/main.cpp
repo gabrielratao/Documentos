@@ -2,8 +2,7 @@
 #include <SPI.h>
 #include <avr/wdt.h>
 
-//teste
-//teste
+
 #define ArduinoMEGA
 
 #define opSerial Serial
@@ -19,13 +18,15 @@ unsigned long cloopTime;
 unsigned char SPI_in[86], SPI_in_index;
 unsigned char ssPin_OPC = 23;
 
+//COMENTARIO RATONICO
+/*
 void PrintOPCstring (Stream &port)
 {
   port.write(SPI_in, 60); //print 60 characters from SPI_in[] array
   port.println("");
   port.flush();
 }
-
+*/
 void AddDelimiter (Stream &port)
 {
   port.print(F(",")); //delimiter
@@ -109,7 +110,8 @@ void ReadOPCstring (unsigned char SPIcommand)
   SetSSpin(HIGH);
   SPI.endTransaction();
 
-  PrintOPCstring(opSerial);
+  //COMENTARIO RATONICO
+  //PrintOPCstring(opSerial);
 }
 
 void StartOPC (void)
@@ -171,6 +173,8 @@ void ReadOPCconfig (Stream &port)
     SPI.endTransaction();
     delay(10);
 
+    //COMENTARIO RATONICO
+    /*
     port.print(F("BinBoundaries(ADC)"));
     for (SPI_in_index=0; SPI_in_index<50; SPI_in_index+=2)
     {
@@ -179,6 +183,7 @@ void ReadOPCconfig (Stream &port)
       port.print(*pUInt16, DEC);
     }
     port.println("");
+    */
     port.flush();
   //END Get config from OPC device (Bin Boundaries ADC)
 
@@ -198,6 +203,8 @@ void ReadOPCconfig (Stream &port)
     SPI.endTransaction();
     delay(10);
 
+    //COMENTARIO RATONICO
+    /*
     port.print(F("BinBoundaries(um)"));
     for (SPI_in_index=0; SPI_in_index<50; SPI_in_index+=2)
     {
@@ -206,6 +213,7 @@ void ReadOPCconfig (Stream &port)
       port.print((float)*pUInt16/100, 2); //print to 2dp
     }
     port.println("");
+    */
     port.flush();
   //END Get config from OPC device (Bin Boundaries um)
 
@@ -225,6 +233,8 @@ void ReadOPCconfig (Stream &port)
     SPI.endTransaction();
     delay(10);
 
+    //COMENTARIO RATONICO
+    /*
     port.print(F("BinWeightings"));
     for (SPI_in_index=0; SPI_in_index<48; SPI_in_index+=2)
     {
@@ -233,6 +243,7 @@ void ReadOPCconfig (Stream &port)
       port.print((float)*pUInt16/100, 2); //print to 2dp
     }
     port.println("");
+    */
     port.flush();
   //END Get config from OPC device (Bin Weightings)
 
@@ -250,6 +261,8 @@ void ReadOPCconfig (Stream &port)
     SPI.endTransaction();
     delay(10);
 
+    //COMENTARIO RATONICO ..
+    /*
     port.print(F("M_A(um),"));
     pUInt16 = (unsigned int *)&SPI_in[0];
     port.println((float)*pUInt16/100, 2); //print to 2dp
@@ -295,6 +308,7 @@ void ReadOPCconfig (Stream &port)
 
     port.print(F("BinWeightingIndex,"));
     port.println(SPI_in[19], DEC);
+    */
     port.flush();
   //END Get config from OPC device (Misc)
 
@@ -311,6 +325,8 @@ void ReadOPCconfig (Stream &port)
     SPI.endTransaction();
     delay(10);
 
+    //COMENTARIO RATONICO ..
+    /*
     port.print(F("FanDAC_ON,"));
     port.println(SPI_in[0], DEC); //print value
 
@@ -328,6 +344,7 @@ void ReadOPCconfig (Stream &port)
 
     port.print(F("AutoGainToggle,"));
     port.println(SPI_in[5]>>1, DEC); //print value
+    */
     port.flush();
   //END Get DAC and power status from OPC device (this is a different command to the 'get config' one)
 }
@@ -529,6 +546,8 @@ void PrintData (Stream &port)
   port.flush();
 }
 
+//COMENTARIO RATONICO ..
+/*
 //Print data labels
 void PrintDataLabels (Stream &port)
 {
@@ -554,6 +573,8 @@ void PrintDataLabels (Stream &port)
 
   port.flush();
 }
+
+*/
 
 void setup()
 {
@@ -581,7 +602,7 @@ void setup()
   wdt_reset(); //Reset watchdog timer
   //END Device #1
 
-  PrintDataLabels(opSerial); //Print labels to serial port
+  //PrintDataLabels(opSerial); //Print labels to serial port
 
   currentTime = millis();
   cloopTime = currentTime;
@@ -616,11 +637,15 @@ void loop()
       {
         delay(1000);
         ReadOPChist(); //Read OPC histogram data
+
+        
         if (i != 0) {
           //Print time since start (millis() returns an unsigned long of number of ms since program started. It wraps around in ~50 days.)
           opSerial.print(millis());
+          //ABABA
           PrintData(opSerial); //Print data to serial
         }
+        
         wdt_reset(); //Reset watchdog timer
       }
 

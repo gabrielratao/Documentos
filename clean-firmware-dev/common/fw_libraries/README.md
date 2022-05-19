@@ -1,0 +1,5 @@
+# The CLEAN Firmware Libraries
+
+The firmware of the devices was developed on the Arduino Framework. This Framework is an abstraction of source codes and libraries that are common to various hardware platforms. The framework makes it possible to write programs to control a wide range of devices embedded into Arduino and other manufacturers’ boards. It provides code libraries written in C/C++ for programming microcontrollers and for interfacing with peripheral devices.
+
+For programming all the firmware’s functionalities, the code was structured in a set of classes. This structure was conceived aiming at its reuse in other microcontrollers platforms and other hardware components supported in the Arduino Framework (such as ESP8266 from Espressif) and also to facilitate code review and maintenance. The classes developed for the project are distributed in four main library packages, as shown in Figure 1: the the Hardware Interfaces package, the System Drivers package, the Sensors package and the Data package. For more information refer to [The CLEAN Firmware Libraries](https://lcqar.ufsc.br/novo/index.php/the-firmware-libraries/).
