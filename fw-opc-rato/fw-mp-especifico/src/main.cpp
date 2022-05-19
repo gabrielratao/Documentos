@@ -2,7 +2,7 @@
 #include <SPI.h>
 #include <avr/wdt.h>
 
-
+//teste
 #define ArduinoMEGA
 
 #define opSerial Serial
@@ -11,8 +11,6 @@
 #define SPI_OPC_busy 0x31
 #define SPI_OPC_ready 0xF3
 
-int a = 55;
-int b = 43;
 
 
 unsigned long currentTime;
