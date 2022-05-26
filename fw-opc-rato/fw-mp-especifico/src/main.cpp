@@ -642,7 +642,7 @@ void loop()
         if (i != 0) {
           //Print time since start (millis() returns an unsigned long of number of ms since program started. It wraps around in ~50 days.)
           opSerial.print(millis());
-          //ABABA
+          
           PrintData(opSerial); //Print data to serial
         }
         
